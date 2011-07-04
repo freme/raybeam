@@ -69,12 +69,17 @@ void Image::writePPM(ostream& out)
     unsigned char red, green, blue;
 
     // output clamped values, range [0...255]
+    // PPM start in the upper left of the picture
+    // A raster of Height rows, in order from top to bottom. 
+    // Each row consists of Width pixels, in order from left to right.
+    // the outer(first loop has to be the height
+    // so the inner(second) loop has to be the width
     for (i = ny-1; i >= 0; i--)
         for (j = 0; j < nx; j++)
         {
-            ired = (unsigned int) (256*raster[i][j].r());
-            igreen = (unsigned int) (256*raster[i][j].g());
-            iblue = (unsigned int) (256*raster[i][j].b());
+            ired = (unsigned int) (256*raster[j][i].r());
+            igreen = (unsigned int) (256*raster[j][i].g());
+            iblue = (unsigned int) (256*raster[j][i].b());
             // clamp if needed
             if (ired > 255) ired = 255;
             if (igreen > 255) igreen = 255;
@@ -127,7 +132,7 @@ void Image::readPPM(string file_name)
             in.get(red);
             in.get(green);
             in.get(blue);
-            raster[i][j] = rgb((float)((unsigned char)red)/255.0,
+            raster[j][i] = rgb((float)((unsigned char)red)/255.0,
                                (float)((unsigned char)green)/255.0,
                                (float)((unsigned char)blue)/255.0);
         }
