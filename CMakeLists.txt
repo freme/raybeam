@@ -2,11 +2,13 @@ cmake_minimum_required(VERSION 2.6)
 
 SET(SRC 
     image.cc
+    vector3.cc
     )
 
 SET(FLS
     rgb.h
     image.h
+    vector3.h
     )
 
 PROJECT(RayBeam)
