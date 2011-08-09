@@ -16,7 +16,7 @@ std::istream& operator>>(std::istream& is, Vector3& t) {
     return is;
 }
 
-std::ostream& operator<<(std::ostream& os, Vector3& t) {
+std::ostream& operator<<(std::ostream& os, const Vector3& t) {
     os << '('
         << t.e[0] << " "
         << t.e[1] << " "

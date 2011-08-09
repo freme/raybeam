@@ -3,6 +3,7 @@
 int main() {
     Vector3 vec1(2.0f, 2.0f, 2.0f);
     Vector3 vec2(1.0f, 2.0f, 3.0f);
+    Vector3 vec3(5.0f, 7.0f, 4.0f);
     Vector3 temp;
     float ftmp = 0.0f;
 
@@ -19,6 +20,7 @@ int main() {
 
     std::cout << "vec1 = " << vec1 << std::endl;
     std::cout << "vec2 = " << vec2 << std::endl;
+    std::cout << "vec3 = " << vec3 << std::endl;
 
     temp = vec1 + vec2;
     std::cout << "vec1 + vec2 = " << temp << std::endl;
@@ -35,11 +37,11 @@ int main() {
     temp = cross(vec1, vec2);
     std::cout << "cross(vec1, vev2) = " << temp << std::endl;
 
-    ftmp = dot(vec1, vec2);
-    std::cout << "dot(vec1, vec2) = " << ftmp << std::endl;
+    ftmp = dot(temp, vec3);
+    std::cout << "dot(temp, vec3) = " << ftmp << std::endl;
 
-    ftmp = tripleProduct(vec1, vec2, vec2);
-    std::cout << "tripleProduct(vec1, vec2) = " << ftmp << std::endl;
+    ftmp = tripleProduct(vec1, vec2, vec3);
+    std::cout << "tripleProduct(vec1, vec2, vec3) = " << ftmp << std::endl;
 
 
 
