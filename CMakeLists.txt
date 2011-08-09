@@ -33,6 +33,8 @@ ADD_EXECUTABLE(test_rng test_rng.cc)
 ADD_EXECUTABLE(test_ray vector3.cc test_ray.cc)
 ADD_EXECUTABLE(test_surfaces triangle.cc sphere.cc test_surfaces.cc)
 
+ADD_EXECUTABLE(simple_raytrace image.cc triangle.cc sphere.cc simple_raytrace.cc)
+
 SET(CMAKE_C_COMPILER llvm-gcc)
 SET(CMAKE_CXX_COMPILER llvm-g++)
 # not sure if the next one even exists
