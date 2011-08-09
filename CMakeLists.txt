@@ -14,6 +14,9 @@ SET(FLS
     dynarray.h
     rng.h
     ray.h
+    shape.h
+    triangle.h
+    sphere.h
     )
 
 PROJECT(RayBeam)
@@ -28,6 +31,7 @@ ADD_EXECUTABLE(test_onb vector3.cc onb.cc test_onb.cc)
 ADD_EXECUTABLE(test_dynarray test_dynarray.cc)
 ADD_EXECUTABLE(test_rng test_rng.cc)
 ADD_EXECUTABLE(test_ray vector3.cc test_ray.cc)
+ADD_EXECUTABLE(test_surfaces triangle.cc sphere.cc test_surfaces.cc)
 
 SET(CMAKE_C_COMPILER llvm-gcc)
 SET(CMAKE_CXX_COMPILER llvm-g++)
