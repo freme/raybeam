@@ -11,6 +11,7 @@ SET(FLS
     image.h
     vector3.h
     onb.h
+    dynarray.h
     )
 
 PROJECT(RayBeam)
@@ -21,9 +22,13 @@ SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -arch i386")
 ADD_EXECUTABLE(test_image image.cc test_image.cc)
 ADD_EXECUTABLE(test_vector3 vector3.cc test_vector3.cc)
 ADD_EXECUTABLE(test_onb vector3.cc onb.cc test_onb.cc)
+ADD_EXECUTABLE(test_dynarray test_dynarray.cc)
 
-#SET(CMAKE_C_COMPILER gcc)
-#SET(CMAKE_CXX_COMPILER g++)
+SET(CMAKE_C_COMPILER llvm-gcc)
+SET(CMAKE_CXX_COMPILER llvm-g++)
+# not sure if the next one even exists
+SET(CMAKE_LINKER llvm-ld)
+SET(CMAKE_C_LINK_EXECUTABLE llvm-ld)
 
 #SET(CMAKE_VERBOSE_MAKEFILE true)
 
