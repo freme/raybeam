@@ -16,7 +16,7 @@ PROJECT(RayBeam)
 ADD_DEFINITIONS("-g -Wall -pedantic")
 
 ADD_EXECUTABLE(test_image image.cc test_image.cc)
-ADD_EXECUTABLE(test_vector3 vector3.cc test_vector3.cc)
+ADD_EXECUTABLE(test_vector3 test_vector3.cc)
 
 #SET(CMAKE_C_COMPILER gcc)
 #SET(CMAKE_CXX_COMPILER g++)
