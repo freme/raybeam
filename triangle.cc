@@ -7,7 +7,21 @@ Triangle::Triangle(const Vector3& _p0, const Vector3& _p1, \
                 : p0(_p0), p1(_p1), p2(_p2), color(_color) 
 { }
 
-// this is based on Cramer's rule
+// using barycentric coordinates (a,b,c):
+// p(aplha, beta, gamma) = alpha*a + beta*b + gamma*c
+// with alpha+beta+gamma=1
+// as alpha|beta|gamma all are wihtin (0,1)
+// alpha = 1 - beta - gamma
+// and therefore 
+// p(beta, gamma) = a + beta(b-a) + gamma(c-a)
+// and p(beta, gamma) == p(t) == o + td
+// if expanded to 3 equations for vector (x,y,z) we get a 3x3 linear system
+// that is solved using Cramer's rule
+//
+// the normal vector of a triangle is the cross product (x) of 
+// two vectors in the pane and if we stick to store these vectors
+// counterclockwise:
+// n = (b-a) x (c-a)
 bool Triangle::hit(const Ray& r, float tmin, float tmax, float time, \
         HitRecord& record) const {
     
@@ -36,7 +50,7 @@ bool Triangle::hit(const Ray& r, float tmin, float tmax, float time, \
     float beta =  (J*EIHF + K*GFDI + L*DHEG) / denom;
     if (beta <= 0.0f || beta >= 1.0f) return false;
 
-    float AKJB = A*K - J*B;
+    float   = A*K - J*B;
     float JCAL = J*C - A*L;
     float BLKC = B*L - K*C;
 

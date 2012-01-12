@@ -14,6 +14,7 @@ int main() {
     HitRecord rec;
     bool is_a_hit;
     float tmax;
+    // negative z so we can use right-handed coords
     Vector3 dir(0,0,-1); // direction of viewing rays
 
     // scene geometry
