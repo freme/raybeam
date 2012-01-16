@@ -50,7 +50,7 @@ bool Triangle::hit(const Ray& r, float tmin, float tmax, float time, \
     float beta =  (J*EIHF + K*GFDI + L*DHEG) / denom;
     if (beta <= 0.0f || beta >= 1.0f) return false;
 
-    float   = A*K - J*B;
+    float AKJB = A*K - J*B;
     float JCAL = J*C - A*L;
     float BLKC = B*L - K*C;
 
