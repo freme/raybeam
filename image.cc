@@ -2,6 +2,7 @@
 
 #include "image.h"
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 Image::Image()
