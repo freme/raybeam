@@ -6,6 +6,7 @@
 #include "ray.h"
 //#include "vector3.h"
 #include "rgb.h"
+#include "texture.h"
 
 // this shouldn't be needed
 //class Ray;
@@ -15,6 +16,9 @@ struct HitRecord {
     float t;
     Vector3 normal;
     rgb color;
+    Vector2 uv;
+    Vector3 hit_p;
+    Texture* hit_tex;
 };
 
 class Shape {

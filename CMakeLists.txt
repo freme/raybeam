@@ -26,12 +26,15 @@ ADD_DEFINITIONS("-g -Wall -pedantic")
 #SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
 
 ADD_EXECUTABLE(test_image image.cc test_image.cc)
+ADD_EXECUTABLE(test_vector2 test_vector2.cc)
 ADD_EXECUTABLE(test_vector3 vector3.cc test_vector3.cc)
 ADD_EXECUTABLE(test_onb vector3.cc onb.cc test_onb.cc)
 ADD_EXECUTABLE(test_dynarray test_dynarray.cc)
 ADD_EXECUTABLE(test_rng test_rng.cc)
 ADD_EXECUTABLE(test_ray vector3.cc test_ray.cc)
 ADD_EXECUTABLE(test_surfaces triangle.cc sphere.cc test_surfaces.cc)
+ADD_EXECUTABLE(test_solid_noise solid_noise.cc test_solid_noise.cc)
+ADD_EXECUTABLE(test_noise_texture noise_texture.cc test_noise_texture.cc)
 
 ADD_EXECUTABLE(simple_raytrace image.cc triangle.cc sphere.cc simple_raytrace.cc)
 
