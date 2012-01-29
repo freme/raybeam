@@ -4,6 +4,7 @@ SET(SRC
     image.cc
     vector3.cc
     onb.cc
+    mesh.cc
     )
 
 SET(FLS
@@ -17,6 +18,7 @@ SET(FLS
     shape.h
     triangle.h
     sphere.h
+    mesh.h
     )
 
 PROJECT(RayBeam)
@@ -33,7 +35,7 @@ ADD_EXECUTABLE(test_rng test_rng.cc)
 ADD_EXECUTABLE(test_ray vector3.cc test_ray.cc)
 ADD_EXECUTABLE(test_surfaces triangle.cc sphere.cc test_surfaces.cc)
 
-ADD_EXECUTABLE(simple_raytrace image.cc triangle.cc sphere.cc simple_raytrace.cc)
+ADD_EXECUTABLE(simple_raytrace mesh.cc image.cc triangle.cc sphere.cc simple_raytrace.cc)
 
 SET(CMAKE_C_COMPILER llvm-gcc)
 SET(CMAKE_CXX_COMPILER llvm-g++)
