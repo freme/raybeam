@@ -33,10 +33,18 @@ bool Mesh::hit(const Ray& r, float tmin, float tmax, float time, HitRecord& reco
             is_hit = true;
         }
     }
-    //std::cerr << is_hit;
     return is_hit;
 }
 
 bool Mesh::shadowHit(const Ray& r, float tmin, float tmax, float time) const {
-    return false;   
+    bool is_hit = false;
+    for(int i = 0; i < triangles.size(); i++) {
+        triangle_record tr = triangles[i];
+        Triangle t = Triangle(vertices[tr.a],vertices[tr.b],vertices[tr.c],tr.color);
+        if (t.shadowHit(r, .00001f, tmax, 0.0f)) {
+            is_hit = true;
+            break;
+        }
+    }
+    return is_hit;   
 }
