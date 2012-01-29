@@ -9,29 +9,9 @@
 #include "triangle.h"
 #include "sphere.h"
 #include "mesh.h"
-
+#include <cmath>
 
 using namespace std;
-
-
-void debug(Mesh &m) {
-    cerr << "Vertices:\n";
-    for (int i = 0; i < m.vertices.size(); i++) {
-        cerr << "  " << i << ":\n";
-        cerr << "    x: " << m.vertices[i].x()<<"\n";
-        cerr << "    y: " << m.vertices[i].y()<<"\n";
-        cerr << "    z: " << m.vertices[i].z()<<"\n";
-    }
-    cerr << "\n";
-    cerr << "Triangles:\n";
-    for (int i = 0; i < m.triangles.size(); i++) {
-        cerr << "  " << i << ":\n";
-        cerr << "     a: " <<  m.triangles[i].a << "\n";
-        cerr << "     b: " <<  m.triangles[i].b << "\n";
-        cerr << "     c: " <<  m.triangles[i].c << "\n";
-        cerr << "     color: " <<  m.triangles[i].color << "\n";
-    }
-}
 
 
 int main() {
@@ -39,7 +19,7 @@ int main() {
     bool is_a_hit;
     float tmax;
     // negative z so we can use right-handed coords
-    Vector3 dir(0,0,-1); // direction of viewing rays
+    const Vector3 dir(0,0,-1); // direction of viewing rays
 
     // scene geometry
     vector<Shape*> shapes;
@@ -56,15 +36,16 @@ int main() {
                 rgb(.2, .9, .1)));
     
     
-    Mesh m;// = new Mesh();    
+    Mesh m = Mesh(rgb(1.0,1.0,0));
     int a = m.add_vertex(Vector3(100,100,-300));
     int b = m.add_vertex(Vector3(200,100,-300));
     int c = m.add_vertex(Vector3(400,400,-300));
-    m.define_triangle(a,b,c,rgb(0.04,0.0,1.0));
-    //debug(m);
+    m.define_triangle(a,b,c);
+    m.compute_normals();
     shapes.push_back(&m);
     Image im(500, 500);
 
+    const Vector3 diffuse_light(0,1,0);
     // loop over pixels
     for (int i = 0; i < 500; i++)
         for (int j = 0; j < 500; j++) {
@@ -78,7 +59,13 @@ int main() {
                     tmax = rec.t;
                     is_a_hit = true;
                 }
-            if (is_a_hit) im.set(i, j, rec.color);
+            if (is_a_hit) {
+                //so some simple diffuse lighting
+                rgb shaded_color = rec.color;
+                float radians = acos(dot(rec.normal,diffuse_light));
+                shaded_color /= radians/M_PI;
+                im.set(i, j, shaded_color);
+            }
             else im.set(i, j, rgb(.2, .2, .2));
         }
     im.writePPM(cout);
