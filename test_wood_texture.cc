@@ -4,12 +4,12 @@
 #include "vector3.h"
 #include "rgb.h"
 #include "image.h"
-#include "noise_texture.h"
+#include "wood_texture.h"
 using namespace std;
 
 int main() {
     //generate Texture
-    Texture *tex = new NoiseTexture(rgb(1.0,1.0,1.0), rgb(0.0,0.0,0.0), 0.01f);
+    Texture *tex = new WoodTexture(0.001f);
 
     Image im(1500, 1500);
 
