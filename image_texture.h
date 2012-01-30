@@ -4,6 +4,7 @@
 #define _IMAGE_TEXTURE_H_ 1
 
 #include "texture.h"
+#include "image.h"
 
 class Image;
 

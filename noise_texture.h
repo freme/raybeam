@@ -16,14 +16,14 @@ class NoiseTexture : public Texture {
             c1 = rgb(0.0,0.0,0.8);
         }
 
-        NoiseTexture(const rgb& c0, const rgb& c1, float _scale = 1.0f)
+        NoiseTexture(const rgb& _c0, const rgb& _c1, float _scale = 1.0f)
             : c0(_c0), c1(_c1), scale(_scale) {}
 
         virtual rgb value(const Vector2& uv, const Vector3& p) const;
 
-        float scale;
         rgb c0, c1;
+        float scale;
         SolidNoise solid_noise;
-}
+};
 
 #endif // _NOISE_TEXTURE_H_            

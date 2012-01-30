@@ -34,7 +34,10 @@ ADD_EXECUTABLE(test_rng test_rng.cc)
 ADD_EXECUTABLE(test_ray vector3.cc test_ray.cc)
 ADD_EXECUTABLE(test_surfaces triangle.cc sphere.cc test_surfaces.cc)
 ADD_EXECUTABLE(test_solid_noise solid_noise.cc test_solid_noise.cc)
-ADD_EXECUTABLE(test_noise_texture noise_texture.cc test_noise_texture.cc)
+ADD_EXECUTABLE(test_noise_texture image.cc solid_noise.cc noise_texture.cc uvsphere.cc test_noise_texture.cc)
+ADD_EXECUTABLE(test_simple_texture image.cc uvsphere.cc test_simple_texture.cc)
+ADD_EXECUTABLE(test_marble_texture image.cc solid_noise.cc marble_texture.cc uvsphere.cc test_marble_texture.cc)
+ADD_EXECUTABLE(test_image_texture image.cc image_texture.cc uvsphere.cc test_image_texture.cc)
 
 ADD_EXECUTABLE(simple_raytrace image.cc triangle.cc sphere.cc simple_raytrace.cc)
 

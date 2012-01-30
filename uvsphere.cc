@@ -2,10 +2,10 @@
 
 #include "uvsphere.h"
 
-UVSphere::UVSphere(const Vector3&, float _radius, Texture* _tex)
+UVSphere::UVSphere(const Vector3& _center, float _radius, Texture* _tex)
     : center(_center), radius(_radius), tex(_tex) {}
 
-bool UVSphere::hit(const Ray& r, float tmin, float tmax, float time, HitRecord* record)const {
+bool UVSphere::hit(const Ray& r, float tmin, float tmax, float time, HitRecord& record)const {
     Vector3 temp = r.origin() - center;
 
     double a = dot(r.direction(), r.direction());
@@ -16,7 +16,7 @@ bool UVSphere::hit(const Ray& r, float tmin, float tmax, float time, HitRecord* 
 
     // first check to see if ray intersects sphere
     if ( discriminant > 0.0 ) {
-        discriminant = sqrt(discriminant)
+        discriminant = sqrt(discriminant);
         double t = (-b -discriminant) /(2.0*a);
 
         //now check for valid interval
@@ -32,7 +32,7 @@ bool UVSphere::hit(const Ray& r, float tmin, float tmax, float time, HitRecord* 
 
         //calculate UV coordinates
         float twopi = 6.28318530718f;
-        float theata = acos( n.z());
+        float theta = acos( n.z());
         float phi   = atan2(n.y(), n.x());
         if(phi < 0.0f )
             phi += twopi;
@@ -58,7 +58,7 @@ bool UVSphere::shadowHit(const Ray& r, float tmin, float tmax, float time)const 
 
     // first check to see if ray intersects sphere
     if ( discriminant > 0.0 ) {
-        discriminant = sqrt(discriminant)
+        discriminant = sqrt(discriminant);
         double t = (-b -discriminant) /(2.0*a);
 
         //now check for valid interval

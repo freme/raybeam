@@ -5,7 +5,7 @@
 
 #include "texture.h"
 
-class SimpleTexture : Texture {
+class SimpleTexture : public Texture {
     public:
         SimpleTexture(rgb c) { color = c; }
         virtual rgb value(const Vector2& uv, const Vector3& p) const {

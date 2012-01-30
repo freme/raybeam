@@ -19,7 +19,7 @@ class MarbleTexture : public Texture {
         }
 
         MarbleTexture(const rgb& _c0, const rgb& _c1, const rgb& _c2,
-            float stripes_per_unit, float _scale = 3.0f, int _octaves)
+            float stripes_per_unit, float _scale = 3.0f, int _octaves = 8)
             : c0(_c0),c1(_c1),c2(_c2) {
             freq = M_PI * stripes_per_unit;
             scale = _scale;
