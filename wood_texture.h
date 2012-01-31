@@ -13,7 +13,7 @@ class WoodTexture : public Texture {
         WoodTexture(float _scale = 1.0f, int _grain=20){
             scale = _scale;
             grain = _grain;
-            c0 = rgb(0.8,0.4,0.0);
+            c0 = rgb(0.4,0.2,0.1);
             c1 = rgb(0.2,0.1,0.0);
         }
 
