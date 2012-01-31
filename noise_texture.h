@@ -12,8 +12,8 @@ class NoiseTexture : public Texture {
     public:
         NoiseTexture(float _scale = 1.0f){
             scale = _scale;
-            c0 = rgb(0.8,0.0,0.0);
-            c1 = rgb(0.0,0.0,0.8);
+            c0 = rgb(1.0,1.0,1.0);
+            c1 = rgb(0.0,0.0,0.0);
         }
 
         NoiseTexture(const rgb& _c0, const rgb& _c1, float _scale = 1.0f)

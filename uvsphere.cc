@@ -31,14 +31,14 @@ bool UVSphere::hit(const Ray& r, float tmin, float tmax, float time, HitRecord& 
         Vector3 n = record.normal = (record.hit_p - center) / radius;
 
         //calculate UV coordinates
-        float twopi = 6.28318530718f;
-        float theta = acos( n.z());
-        float phi   = atan2(n.y(), n.x());
+        float twopi = 2*M_PI;
+        float theta = acos( n.y());
+        float phi   = atan2(n.x(), n.z())+M_PI;
         if(phi < 0.0f )
             phi += twopi;
 
-        float one_over_2pi = .159154943092f;
-        float one_over_pi =  .318309886184f;
+        float one_over_2pi = 1/twopi; 
+        float one_over_pi = 1/M_PI;
 
         record.uv = Vector2(phi*one_over_2pi, (M_PI - theta) * one_over_pi);
 

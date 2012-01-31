@@ -1,7 +1,7 @@
-//noise_texture.h
+//wood_texture.h
 
-#ifndef _NOISE_TEXTURE_H_
-#define _NOISE_TEXTURE_H_ 1
+#ifndef _WOOD_TEXTURE_H_
+#define _WOOD_TEXTURE_H_ 1
 
 #include <math.h>
 #include "texture.h"
@@ -28,4 +28,4 @@ class WoodTexture : public Texture {
         SolidNoise solid_noise;
 };
 
-#endif // _NOISE_TEXTURE_H_            
+#endif // _WOOD_TEXTURE_H_            

@@ -1,4 +1,4 @@
-// noise_texture.cc
+// wood_texture.cc
 
 #include "wood_texture.h"
 #include <cstdio>

@@ -1,23 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
 
-SET(SRC 
-    image.cc
-    vector3.cc
-    onb.cc
-    )
-
-SET(FLS
-    rgb.h
-    image.h
-    vector3.h
-    onb.h
-    dynarray.h
-    rng.h
-    ray.h
-    shape.h
-    triangle.h
-    sphere.h
-    )
 
 PROJECT(RayBeam)
 
@@ -34,10 +16,14 @@ ADD_EXECUTABLE(test_rng test_rng.cc)
 ADD_EXECUTABLE(test_ray vector3.cc test_ray.cc)
 ADD_EXECUTABLE(test_surfaces triangle.cc sphere.cc test_surfaces.cc)
 ADD_EXECUTABLE(test_solid_noise solid_noise.cc test_solid_noise.cc)
+
 ADD_EXECUTABLE(test_noise_texture image.cc solid_noise.cc noise_texture.cc test_noise_texture.cc)
 ADD_EXECUTABLE(test_wood_texture image.cc solid_noise.cc wood_texture.cc test_wood_texture.cc)
-ADD_EXECUTABLE(test_simple_texture image.cc uvsphere.cc test_simple_texture.cc)
-ADD_EXECUTABLE(test_marble_texture image.cc solid_noise.cc marble_texture.cc uvsphere.cc test_marble_texture.cc)
+ADD_EXECUTABLE(test_turbulence_texture image.cc solid_noise.cc turbulence_texture.cc test_turbulence_texture.cc)
+ADD_EXECUTABLE(test_simple_texture image.cc test_simple_texture.cc)
+ADD_EXECUTABLE(test_marble_texture image.cc solid_noise.cc marble_texture.cc test_marble_texture.cc)
+
+ADD_EXECUTABLE(test_uvsphere image.cc solid_noise.cc marble_texture.cc wood_texture.cc uvsphere.cc test_uvsphere.cc)
 ADD_EXECUTABLE(test_image_texture image.cc image_texture.cc uvsphere.cc test_image_texture.cc)
 
 ADD_EXECUTABLE(simple_raytrace image.cc triangle.cc sphere.cc simple_raytrace.cc)

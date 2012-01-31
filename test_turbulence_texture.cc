@@ -4,12 +4,12 @@
 #include "vector3.h"
 #include "rgb.h"
 #include "image.h"
-#include "noise_texture.h"
+#include "turbulence_texture.h"
 using namespace std;
 
 int main() {
     //generate Texture
-    Texture *tex = new NoiseTexture(0.01f);
+    Texture *tex = new TurbulenceTexture(0.01f);
 
     Image im(1500, 1500);
 
