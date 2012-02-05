@@ -8,11 +8,11 @@
 
 class RNG {
     public:
-        RNG(uint64_t _seed = 7564231ULL)
+        RNG(uint64_t _seed = 7564231UL)
         {
             seed        =   _seed;
-            mult        =   62089911ULL;
-            llong_max   =   4294967295ULL;
+            mult        =   62089911UL;
+            llong_max   =   4294967295UL;
             float_max   =   4294967295.0f;
         }
         float operator()();
