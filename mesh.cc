@@ -1,5 +1,3 @@
-// mesh.cc
-
 #include "triangle.h"
 #include "mesh.h"
 #include <vector>
@@ -22,13 +20,12 @@ void Mesh::define_triangle(const int ind_a, const int ind_b, const int ind_c) {
 
 bool Mesh::hit(const Ray& r, float tmin, float tmax, float time, HitRecord& record) const {
     bool is_hit = false;
-    float t, dummy_beta, dummy_gamma;
+    float t, beta, gamma;
     for(std::vector<triangle_record>::const_iterator iter = triangles.begin(), end = triangles.end(); iter != end; ++iter) {
         triangle_record tr = *iter;
-        //Triangle t = Triangle(vertices[tr.a],vertices[tr.b],vertices[tr.c],tr.color);
-        if (triangleIntersect(r, tr.a,tr.b,tr.c, tmin, tmax, t, dummy_beta, dummy_gamma)) {
+        if (triangleIntersect(r, tr.a,tr.b,tr.c, tmin, tmax, t, beta, gamma)) {
             record.t = t;
-            //TODO: assign normal
+            record.normal = getNormalOnTriangle(tr,beta,gamma);
             tmax = record.t;
             is_hit = true;
         }
@@ -47,31 +44,67 @@ bool Mesh::shadowHit(const Ray& r, float tmin, float tmax, float time) const {
     return false;   
 }
 
+inline Vector3 Mesh::getNormalOnTriangle(const triangle_record& t, const float& beta, const float& gamma) const {
+    float alpha = 1.0-beta-gamma;
+    Vector3 p0 = vertices[t.a].normal;
+    Vector3 p1 = vertices[t.b].normal;
+    Vector3 p2 = vertices[t.c].normal;
+    return unitVector(alpha*p0+beta*p1+gamma*p2);
+}
+
 void Mesh::compute_normals() {
     //compute triangle normals and collect triangle-vertex associations
-    std::vector<Vector3> triangle_normals(triangles.size(),Vector3());
+    std::vector<Vector3> triangle_normals;
     std::vector<std::vector<int> > associations(vertices.size()); //associations[vertex][triangle]
     for (int i = 0, end = triangles.size(); i < end; i++) {
+        //std::cerr << "Triangle " << i << " has vertex " << triangles[i].a << "\n";
         Vector3 p0 = vertices[triangles[i].a].coordinate;
+        //std::cerr << "    " << p0.x() << " | " << p0.y() << " | " << p0.z() << "\n";
         associations[triangles[i].a].push_back(i);
+        //std::cerr << "Triangle " << i << " has vertex " << triangles[i].b << "\n";
         Vector3 p1 = vertices[triangles[i].b].coordinate;
+        //std::cerr << "    " << p1.x() << " | " << p1.y() << " | " << p1.z() << "\n";
         associations[triangles[i].b].push_back(i);
+        //std::cerr << "Triangle " << i << " has vertex " << triangles[i].c << "\n";
         Vector3 p2 = vertices[triangles[i].c].coordinate;
+        //std::cerr << "    " << p2.x() << " | " << p2.y() << " | " << p2.z() << "\n";
         associations[triangles[i].c].push_back(i);
-        triangle_normals.push_back(unitVector(cross((p1 - p0), (p2 - p0))));
+        Vector3 a = p1 - p0;
+        //std::cerr << "p1-p0: " << a.x() << " | " << a.y() << " | " << a.z() << "\n";
+        Vector3 b = p2 - p0;
+        //std::cerr << "p2-p0: " << b.x() << " | " << b.y() << " | " << b.z() << "\n";
+        Vector3 crossp = cross(a, b);
+        //std::cerr << "cross: " << crossp.x() << " | " << crossp.y() << " | " << crossp.z() << "\n";
+        Vector3 normal = unitVector(crossp);
+        triangle_normals.push_back(normal);
+        //std::cerr << "Resulting in normal: " << normal.x() << " | " << normal.y() << " | " << normal.z() << "\n";
+        //std::cerr << "\n";
     }
+    
+    /*std::cerr << "normals now:\n";
+    for (int i = 0, end = triangle_normals.size(); i < end; i++) {
+        std::cerr << "    " << triangle_normals[i].x() << " | " << triangle_normals[i].y() << " | " << triangle_normals[i].z() << "\n";
+    }
+    */
+    //std::cerr << "\nassoc size: " << associations.size() << "\n";
+    
     //average triangle normals to get vertex normals
     for (int v = 0, end_v = associations.size(); v < end_v; v++) {
-        Vector3 sum;
+        Vector3 sum(0,0,0);
         int count = associations[v].size();
+        //std::cerr << "  vertice " << v << " has " << count << ":\n";
         if (count > 0) { //check if there are any triangles at all
+            //std::cerr << "  Sums:\n";
             for (int t = 0, end_t = associations[v].size(); t < end_t; t++) {
-            sum += triangle_normals[t];
+                int triangle_index = associations[v][t];
+                //std::cerr << "    " << triangle_normals[triangle_index].x() << " | " << triangle_normals[triangle_index].y() << " | " << triangle_normals[triangle_index].z() << "\n";
+                sum += triangle_normals[triangle_index];
             }
-            sum /= count;
-            vertices[v].normal = sum;
+            vertices[v].normal = unitVector(sum);
+            //std::cerr << "    Make normal: " << vertices[v].normal.x() << " | " << vertices[v].normal.y() << " | " << vertices[v].normal.z() << "\n---\n";
         }
     }
+    //std::cerr << "\n";
 }
 
 inline bool Mesh::triangleIntersect(const Ray& r, const int& vertex_a_index, const int& vertex_b_index, const int& vertex_c_index, float& tmin, float& tmax, float& t, float& beta, float& gamma) const {

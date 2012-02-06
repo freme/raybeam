@@ -36,12 +36,16 @@ ADD_EXECUTABLE(test_ray vector3.cc test_ray.cc)
 ADD_EXECUTABLE(test_surfaces triangle.cc sphere.cc test_surfaces.cc)
 
 ADD_EXECUTABLE(simple_raytrace mesh.cc image.cc triangle.cc sphere.cc simple_raytrace.cc)
+ADD_EXECUTABLE(test_mesh mesh.cc image.cc test_mesh.cc)
+ADD_EXECUTABLE(test_no_mesh image.cc triangle.cc test_no_mesh.cc)
+ADD_EXECUTABLE(test_instance instance.cc matrix.cc mesh.cc image.cc test_instance.cc)
+ADD_EXECUTABLE(example_instances instance.cc matrix.cc mesh.cc image.cc example_instances.cc)
 
-SET(CMAKE_C_COMPILER llvm-gcc)
-SET(CMAKE_CXX_COMPILER llvm-g++)
-# not sure if the next one even exists
-SET(CMAKE_LINKER llvm-ld)
-SET(CMAKE_C_LINK_EXECUTABLE llvm-ld)
+
+SET(CMAKE_C_COMPILER gcc)
+SET(CMAKE_CXX_COMPILER g++)
+SET(CMAKE_LINKER ld)
+SET(CMAKE_C_LINK_EXECUTABLE ld)
 
 #SET(CMAKE_VERBOSE_MAKEFILE true)
 

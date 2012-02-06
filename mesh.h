@@ -1,5 +1,3 @@
-// mesh.h
-
 #ifndef _MESH_H_
 #define _MESH_H_ 1
 
@@ -23,6 +21,7 @@ class Mesh : public Shape {
         
         void compute_normals();
         
+        friend void debug(Mesh m);
      
     private:
         struct triangle_record {
@@ -37,6 +36,8 @@ class Mesh : public Shape {
         
         bool triangleIntersect(const Ray& r, const int& vertex_a_index, const int& vertex_b_index, const int& vertex_c_index, \
                 float& tmin, float& tmax, float& t, float& beta, float& gamma) const;
+        
+        Vector3 getNormalOnTriangle(const triangle_record& t, const float& beta, const float& gamma) const;
         
         std::vector<triangle_record> triangles;
         std::vector<vertex_record> vertices;
