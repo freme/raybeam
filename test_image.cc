@@ -1,6 +1,6 @@
 #include "image.h"
 #include <ostream>
-
+#include <cstdlib>
 // picture starts in the lower left
 
 void swap(int &x, int &y)
@@ -90,7 +90,7 @@ float rand_FloatRange(float a, float b)
 int main()
 {   int w = 800;
     int h = 600;
-    Image pic(w, h, rgb(0, 0, 0));
+    Image pic(w, h, rgb(0.2, 0.2, 0.2));
     rgb col(0.5, 0.5, 0.5);
     
     // raster starts left bottom

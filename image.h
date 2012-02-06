@@ -25,6 +25,11 @@ class Image
         void writePPM(std::ostream& out);
         void readPPM(std::string file_name);
 
+        int width() { return nx; }
+        int height() { return ny; }
+
+        rgb getPixel(int x, int y) {return raster[x][y];}
+
     private:
         rgb** raster;
         int nx; // width
