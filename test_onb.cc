@@ -1,4 +1,5 @@
 #include "onb.h"
+#include <cstdio>
 
 int main() {
     Vector3 vec1(1.0f, 1.0f, 1.0f);
