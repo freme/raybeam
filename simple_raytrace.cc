@@ -91,11 +91,19 @@ int main() {
     debug(cube1);
     //debug(m);
     Image im(500, 500);
-
+//new start    
+    shapes.push_back(new Sphere(Vector3(250,250,-1000), 150, rgb(.2, .2, .8)));
+    shapes.push_back(new Triangle(
+                Vector3(300, 600, -800),
+                Vector3(0, 100, -1000),
+                Vector3(450, 20, -1000),
+                rgb(.8, .2, .2)));
+    Image im(5000, 500);
+//new end
     const Vector3 diffuse_light(0,-1,0);
     // loop over pixels
-    for (int i = 0; i < 500; i++)
-        for (int j = 0; j < 500; j++) {
+    for (int i = 0; i < 5000; i++)
+        for (int j = 0; j < 5000; j++) {
             tmax = 100000.0f;
             is_a_hit = false;
             Ray r(Vector3(i,j,0), dir);
