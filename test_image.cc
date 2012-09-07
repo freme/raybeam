@@ -96,16 +96,14 @@ int main()
     // raster starts left bottom
     // ppm starts left top
     // iterate accordingly
-    /*
-    for (int i = h-1; i >=h/2; i--)
-        for (int j = 0; j < w/2; j++)
+    for (int i = h-1; i >=0; i--)
+        for (int j = 0; j < w; j++)
         {
             col.setRed(rand_FloatRange(0.0, 1.0));
             col.setGreen(rand_FloatRange(0.0, 1.0));
             col.setBlue(rand_FloatRange(0.0, 1.0));
             pic.set(i, j, col);
         }
-    */
 
     col.setRed(rand_FloatRange(0.0, 1.0));
     col.setGreen(rand_FloatRange(0.0, 1.0));
@@ -132,6 +130,11 @@ int main()
     col.setGreen(rand_FloatRange(0.0, 1.0));
     col.setBlue(rand_FloatRange(0.0, 1.0));
     draw_line(300, 100, 200, 150, col, pic);
+    
+    col.setRed(rand_FloatRange(0.0, 1.0));
+    col.setGreen(rand_FloatRange(0.0, 1.0));
+    col.setBlue(rand_FloatRange(0.0, 1.0));
+    draw_line(0, 0, 800, 600, col, pic);
     
 
     std::ofstream out;
