@@ -1,6 +1,6 @@
 // test_ray.cc
 
-#include "ray.h"
+#include "../ray.h"
 
 int main() {
     Ray r1;

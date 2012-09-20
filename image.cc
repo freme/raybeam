@@ -37,8 +37,8 @@ Image::Image(int width, int height, rgb background)
 bool Image::set(int x, int y, const rgb& color)
 {
     // check out of bounds err
-    if (0 > x || x > nx) return false;
-    if (0 > y || x > ny) return false;
+//    if (0 > x || x > nx) return false;
+//    if (0 > y || x > ny) return false;
 
     raster[x][y] = color;
     return true;
@@ -79,9 +79,12 @@ void Image::writePPM(ostream& out)
         for (j = 0; j < nx; j++)
         {
             raster[j][i].clamp();
-            ired = (unsigned int) (255*raster[j][i].r());
-            igreen = (unsigned int) (255*raster[j][i].g());
-            iblue = (unsigned int) (255*raster[j][i].b());
+            ired = (unsigned int) (256*raster[j][i].r());
+            igreen = (unsigned int) (256*raster[j][i].g());
+            iblue = (unsigned int) (256*raster[j][i].b());
+            if ( ired > 255) ired = 255;
+            if ( igreen > 255) igreen = 255;
+            if ( iblue > 255) iblue = 255;
             red = (unsigned char) (ired);
             green = (unsigned char) (igreen);
             blue = (unsigned char) (iblue);

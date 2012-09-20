@@ -1,4 +1,4 @@
-#include "onb.h"
+#include "../onb.h"
 #include <cstdio>
 
 int main() {

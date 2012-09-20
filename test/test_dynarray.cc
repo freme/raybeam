@@ -1,6 +1,6 @@
 // test_dynarray.cc
 
-#include "dynarray.h"
+#include "../dynarray.h"
 #include <iostream>
 
 template <class T> bool status(DynArray<T>* array) {

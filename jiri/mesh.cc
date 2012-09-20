@@ -8,7 +8,8 @@ Mesh::Mesh(const rgb& new_color) : color(new_color) {}
 
 int Mesh::add_vertex(const Vector3& coord) {
     int index = vertices.size();
-    vertices.push_back({coord, Vector3(1,0,0)});
+    struct vertex_record vert = {coord, Vector3(1,0,0)};
+    vertices.push_back(vert);
     return index;
 }
 
@@ -148,3 +149,4 @@ inline bool Mesh::triangleIntersect(const Ray& r, const int& vertex_a_index, con
    t =  -(F*AKJB + E*JCAL + D*BLKC)/denom;
    return (t >= tmin && t <= tmax);
 }
+

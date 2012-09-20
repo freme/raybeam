@@ -7,8 +7,6 @@
 #include <string>
 #include <fstream>
 #include "rgb.h"
-// bad idea to use namespace in .h
-// using namespace std;
 
 class Image
 {

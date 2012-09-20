@@ -1,4 +1,4 @@
-#include "vector3.h"
+#include "../vector3.h"
 
 int main() {
     Vector3 vec1(2.0f, 2.0f, 2.0f);

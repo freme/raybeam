@@ -1,6 +1,6 @@
 // test_rng.cc
 
-#include "rng.h"
+#include "../rng.h"
 #include <iostream>
 
 int main() {

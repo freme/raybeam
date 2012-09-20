@@ -1,4 +1,4 @@
-#include "image.h"
+#include "../image.h"
 #include <ostream>
 #include <cstdlib>
 // picture starts in the lower left
