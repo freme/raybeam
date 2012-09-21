@@ -24,7 +24,8 @@ SET(FLS
 PROJECT(RayBeam)
 
 # -ansi needed for uint64_t numbers
-ADD_DEFINITIONS("-g -Wall -pedantic -I.")# -arch i386")
+ADD_DEFINITIONS("-g -Wall -pedantic")
+#ADD_DEFINITIONS("-O3 -Wall -pedantic")
 #SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -arch i386")
 
 ADD_EXECUTABLE(test_image image.cc test/test_image.cc)
