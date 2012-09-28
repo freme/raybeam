@@ -10,6 +10,9 @@ class Vector2 {
         float x() const { return e[0]; };
         float y() const { return e[1]; };
 
+        void setX(float _x) { e[0] = _x; }
+        void setY(float _y) { e[1] = _y; }
+
         float e[2];
 };
 
